@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-```
+
 environment {
     // Ici tu peux définir des variables si nécessaire
 }
@@ -44,7 +44,6 @@ post {
         echo 'Le pipeline a échoué.'
     }
 }
-```
+
 
 }
-
