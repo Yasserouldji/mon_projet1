@@ -2,9 +2,7 @@ pipeline {
 agent any
 
 
-environment {
-    // Ici tu peux définir des variables si nécessaire
-}
+
 
 stages {
     stage('Clone') {
