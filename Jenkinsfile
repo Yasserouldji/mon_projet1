@@ -15,10 +15,11 @@ stages {
     }
 
     stage('Install dependencies') {
-        steps {
-            sh 'pip install -r requirements.txt'
-        }
+    steps {
+        sh 'pip3 install -r requirements.txt'
     }
+}
+
 
     stage('Run app') {
         steps {
