@@ -1,34 +1,50 @@
 pipeline {
-    agent any
+agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'Récupération du code depuis Git...'
-            }
-        }
+```
+environment {
+    // Ici tu peux définir des variables si nécessaire
+}
 
-        stage('Build / Test') {
-            steps {
-                echo 'Execution du script Python...'
-                sh 'python3 app.py'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Simulation du déploiement...'
-                sh 'mkdir -p /tmp/deploy && cp -r * /tmp/deploy/'
-            }
+stages {
+    stage('Clone') {
+        steps {
+            // Clonage via SSH avec la credential configurée dans Jenkins
+            git branch: 'main',
+                url: 'git@github.com:Yasserouldji/mon_projet1.git',
+                credentialsId: 'GitHub-SSH'  // <-- Met l'ID de ta credential SSH ici
         }
     }
 
-    post {
-        success {
-            echo 'Pipeline terminé avec succès !'
+    stage('Install dependencies') {
+        steps {
+            sh 'pip install -r requirements.txt'
         }
-        failure {
-            echo 'Erreur dans le pipeline !'
+    }
+
+    stage('Run app') {
+        steps {
+            sh 'python app.py'
+        }
+    }
+
+    stage('Tests') {
+        steps {
+            // Si tu as des tests unitaires, tu peux les lancer ici
+            sh 'echo "Tests placeholder"'
         }
     }
 }
+
+post {
+    success {
+        echo 'Pipeline terminé avec succès !'
+    }
+    failure {
+        echo 'Le pipeline a échoué.'
+    }
+}
+```
+
+}
+
