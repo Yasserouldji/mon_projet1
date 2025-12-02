@@ -5,7 +5,7 @@ pipeline {
         stage('Webhook Test') {
             steps {
                 echo "🎉 Webhook OK ! Le build a été déclenché automatiquement depuis GitHub."
-                sh "echo 'Test webhook : build déclenché !!!'"
+                sh "echo 'Test webhook : build déclenché !§!!'"
             }
         }
     }
